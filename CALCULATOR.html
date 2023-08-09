@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Json Tutorial</title>
+    <style>
+        body{
+            background-color: black;
+        }
+
+        #calc{
+            margin-left: 500px;
+            margin-top: 50px;
+        }
+
+        .input {
+            padding: 10px 0px 10px 0px;
+            width: 33%;
+            margin: 5px;
+            text-align: left;
+            font-size: 23px;
+        }
+
+        .btn {
+            box-sizing: border-box;
+            border: none;
+            /* color:rgb(22, 20, 20); */
+            text-decoration: black;
+            border-radius: 100%;
+            padding: 25px;
+            margin: 4px;
+            font-weight: bold;
+            font-size: 16px;
+
+        }
+
+
+        #btn17 {
+            border-radius: 100%;
+            padding: 23px;
+            font-size: 16px;
+        }
+
+        #btn1 {
+            border-radius: 100%;
+            padding: 23px;
+            font-size: 16px;
+        }
+
+        #btn2 {
+            border-radius: 100%;
+            padding: 23px;
+            font-size: 16px;
+        }
+
+        #btn20 {
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="calc">
+        <input class=input type="text">
+        <!-- div.btn#btn$*4 -->
+        <div class="container">
+            <button class="btn" id="btn1">C</button>
+            <button class="btn" id="btn2">%</button>
+            <button class="btn" id="btn3">x</button>
+            <button class="btn" id="btn4">/</button>
+        </div>
+        <div class="container">
+            <button class="btn" id="btn5">7</button>
+            <button class="btn" id="btn6">8</button>
+            <button class="btn" id="btn7">9</button>
+            <button class="btn" id="btn8">*</button>
+        </div>
+        <div class="container">
+            <button class="btn" id="btn9">4</button>
+            <button class="btn" id="btn10">5</button>
+            <button class="btn" id="btn11">6</button>
+            <button class="btn" id="btn12">-</button>
+        </div>
+        <div class="container">
+            <button class="btn" id="btn13">1</button>
+            <button class="btn" id="btn14">2</button>
+            <button class="btn" id="btn15">3</button>
+            <button class="btn" id="btn16">+</button>
+        </div>
+        <div class="container">
+            <button class="btn" id="btn17">00</button>
+            <button class="btn" id="btn18">0</button>
+            <button class="btn" id="btn19">.</button>
+            <button class="btn" id="btn20">=</button>
+        </div>
+    </div>
+
+    <script>
+        let string = " ";
+        let buttons = document.querySelectorAll('.btn');    //Here we get a collection of all the buttons with class (btn)
+        Array.from(buttons).forEach((btn) => {              //We will get a collection of all buttons jisko hum array.from se ensure karlenge to get an array so forEach loop could be applied
+            btn.addEventListener('click', (e) => {           //EventListener will ensure ki btn 'click' hone par e event perform ho
+                if (e.target.innerHTML == "=") {            //e.target.innerHTML will ensure ki h sirf btn touch hone pr hi event perfom ho
+                    string = eval(string);                  // string ko evaluate krlo
+                    document.querySelector('input').value = string;    //input is an open tag isliye we use value jisme now string aa jayegi
+                }
+                else if (e.target.innerHTML == "C") {
+                    string = " ";
+                    document.querySelector('input').value = string;
+                }
+                else if (e.target.innerHTML == "x") {
+                    string = string.slice(0, string.length - 1);
+                    document.querySelector('input').value = string;
+                }
+                else {
+                    console.log(e.target.innerHTML);
+                    string = string + e.target.innerHTML;
+                    document.querySelector('input').value = string;
+                }
+
+                // console.log(e); --->try it
+            })
+            //document.querySelector('h1').innerHTML=string; ---> means if koi h1 tag hota which is a closing tag then h1 mein change ensure krne k liye hm value ki jagah innerHTML use karskte the cuz upr input is an open tag
+        })
+
+
+
+    </script>
+
+</body>
+
+</html>
